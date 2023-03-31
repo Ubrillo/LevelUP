@@ -10,8 +10,8 @@ from kivy.uix.button import Button
 class Main(BoxLayout):
     pass
 
-class GridLayout:
-    pass
+#class GridLayout(GridLayout):
+ #   pass
 
 class Main(App):
     pass

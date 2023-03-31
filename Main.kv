@@ -1,30 +1,66 @@
 Main:
 <Main>:
-    cols: 3
+    cols: 1
     orientation: "vertical"
-    Label:
-        text: "Hello User"
-        size_hint: None, None
-        height: "70dp"
-        font_size: "20dp"
+    StackLayout:
+        #orientation: "lr-tb"
+        size_hint: 1, None
+        height: "30dp"
+        Label:
+            text: "Hello John!"
+            color: '#00FFCE'
+            #height: "70dp"
+            #size_hint: None, None
+            font_size: "25dp"
 
-    Button:
-        text: "Start Learning"
-        font_size: 25
-        size_hint: .6, .2
-        pos_hint: {"center_x": .5, "top": .4}
-
-    Button:
-        text: "Start Learning"
-        font_size: 25
-        size_hint: .6, .2
+    BoxLayout:
+        padding: 30, 30, 30, 30
+        size_hint: .6, 1
+        spacing: 10
+        orientation: "vertical"
         pos_hint: {"center_x": .5}
 
-    GridLayout:
-        orientation: "vertical"
-            Button:
+        BoxLayout:
+            orientation: "vertical"
+            Label
                 text: "Start Learning"
                 font_size: 25
-                size_hint: .2, .2
-                pos_hint: {"center_x": .5, "top": .4}
+                #size_hint: 0, 0
+                #pos_hint: {"center_x": .5, "top": .4}
+                background_normal: ''
+                background_color: (133/255, 31/255, 140/255, .5)
 
+            TextInput:
+                text: "What do you want to learn?"
+                size_hint: .5, .3
+                pos_hint: {"center_x": .5, "top": .1}
+                multiline: False
+
+        Button:
+            text: "Data Sheet"
+            font_size: 25
+            #size_hint: .6, .2
+            #pos_hint: {"center_x": .5, "top": .4}
+            background_normal: ''
+            background_color: (133/255, 31/255, 140/255, .5)
+
+        GridLayout:
+            #orientation: "horizontal"
+            cols: 2
+            spacing:  10
+            Button:
+                text: "IPDS"
+                background_normal: ''
+                background_color: (133/255, 31/255, 140/255, .5)
+            Button:
+                text: "SILICON TO C"
+                background_normal: ''
+                background_color: (133/255, 31/255, 140/255, .5)
+            Button:
+                text: "DATA MODELLING"
+                background_normal: ''
+                background_color: (133/255, 31/255, 140/255, .5)
+            Button:
+                text: "PYTHON"
+                background_normal: ''
+                background_color: (133/255, 31/255, 140/255, .5)
