@@ -1,66 +1,311 @@
-Main:
-<Main>:
-    cols: 1
-    orientation: "vertical"
-    StackLayout:
-        #orientation: "lr-tb"
-        size_hint: 1, None
-        height: "30dp"
-        Label:
-            text: "Hello John!"
-            color: '#00FFCE'
-            #height: "70dp"
-            #size_hint: None, None
-            font_size: "25dp"
+WindowManager:
+    WelcomeWindow:
+    MainWindow:
+    SelectWindow:
+    QuizWindow:
+########################################################
+<WelcomeWindow>:
+    BoxLayout:
+        canvas:
+            Color:
+                rgb: 1,1,1
+            Rectangle:
+                size: root.width, root.height
+        Button:
+            background_color: 1,1,1,1
+            background_normal: ''
+            on_release:
+                app.root.current = "Main"
+                root.manager.transition.direction = "left"
+
+            AsyncImage:
+                source: "https://us.123rf.com/450wm/ruangdesign19/ruangdesign192003/ruangdesign19200300009/142207709-cartoon-school-kid-boy-and-girl-vector-illustration.jpg?ver=6"
+                size: root.width, root.height
+                allow_stretch: True
+#########################################################################################################################################
+<MainWindow>:
+    canvas.before:
+        Color:
+            rgb: 1,1,1
+        Rectangle:
+            size: root.width, root.height
+    name: "Main"
 
     BoxLayout:
-        padding: 30, 30, 30, 30
-        size_hint: .6, 1
-        spacing: 10
+        cols: 1
         orientation: "vertical"
-        pos_hint: {"center_x": .5}
+        RelativeLayout:
+            pos_hint: {'center_x': .5}
+            size_hint: 1, None
+            height: "30dp"
+
+            AnchorLayout:
+                RelativeLayout:
+                    AsyncImage:
+                        source: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Avatar_icon_green.svg/1024px-Avatar_icon_green.svg.png"
+                        pos_hint: {'center_x': .4}
+                    FloatLayout:
+                        Label:
+                            text: "Hello User"
+                            color: '#000000'
+                            #height: "70dp"
+                            #size_hint: "50dp", "50dp"
+                            font_size: "25dp"
 
         BoxLayout:
+            padding: 15, 15, 15, 15
+            #size_hint: .6, 1
+            spacing: 10
             orientation: "vertical"
-            Label
-                text: "Start Learning"
-                font_size: 25
-                #size_hint: 0, 0
-                #pos_hint: {"center_x": .5, "top": .4}
-                background_normal: ''
-                background_color: (133/255, 31/255, 140/255, .5)
+            pos_hint: {"center_x": .5}
 
-            TextInput:
-                text: "What do you want to learn?"
-                size_hint: .5, .3
-                pos_hint: {"center_x": .5, "top": .1}
-                multiline: False
+            RelativeLayout:
+                orientation: "vertical"
+                canvas:
+                    Color:
+
+                        rgba: (133/255, 31/255, 140/255, 1)
+                    RoundedRectangle:
+                        size: self.size
+                        radius: [18]
+                Label
+                    text: "Start Learning"
+                    halign: "left"
+                    font_size: 25
+                    #size_hint: 0, 0
+                    #pos_hint: {"center_x": .5, "top": .4}
+                    background_normal: ''
+                    background_color: '#D629D2' #(133/255, 31/255, 140/255, 1)
+
+
+                TextInput:
+                    text: "What do you want to learn?"
+                    size_hint: .5, .2
+                    pos_hint: {"center_x": .5, "top": 0.3}
+                    multiline: False
+
+            RelativeLayout:
+                #orientation: "vertical"
+                canvas:
+                    Color:
+                        rgba: (133/255, 31/255, 140/255, 1)
+                    RoundedRectangle:
+                        size: self.size
+                        radius: [18]
+
+                RelativeLayout:
+                    canvas:
+                        Color:
+                            rgb: 1,1,1
+                        Line:
+                            points: (20,20, 20, 150)
+                            width: 2
+                        Line:
+                            points: (20,20, 300, 20)
+                            width: 2
+                        Line:
+                            points: (20,20, 120, 120, 240,20, 300, 120)
+                            width: 1
+            GridLayout:
+                cols: 2
+                spacing:  10
+                RoundedButton:
+                    text: "IPDS"
+                    background_normal: ''
+                    background_color: (133/255, 31/255, 140/255, 0)
+                    on_release:
+                        app.root.current = "SelectWindow"
+                        root.manager.transition.direction = "left"
+
+                RoundedButton:
+                    text: "SILICON TO C"
+                    background_normal: ''
+                    background_color: (133/255, 31/255, 140/255, 0)
+                    on_release:
+                        app.root.current = "SelectWindow"
+                        root.manager.transition.direction = "left"
+
+                RoundedButton:
+                    text: "DATA MODELLING"
+                    background_normal: ''
+                    background_color: (133/255, 31/255, 140/255, 0)
+                    on_release:
+                        app.root.current = "SelectWindow"
+                        root.manager.transition.direction = "left"
+
+                RoundedButton:
+                    text: "PYTHON"
+                    background_normal: ''
+                    background_color: (133/255, 31/255, 140/255, 0)
+                    on_release:
+                        app.root.current = "SelectWindow"
+                        root.manager.transition.direction = "left"
+###########################################################################################################
+<SelectWindow>:
+    name: "SelectWindow"
+    canvas:
+        Color:
+            #background_normal: ''
+            rgba: (1,1,1,0.8)
+        Rectangle:
+            size: self.size
+            #radius: [18]
+    BoxLayout:
+        #padding: 50, 50
+        spacing: 50
+        size_hint: .8, .7
+        pos_hint: {'center_x': .5, 'center_y': .5}
+        orientation: "vertical"
+
+        RoundedButton:
+            text: "QUIZ"
+            font_size: 20
+            background_color: rgba(15/255, 39/255, 77/255, 1)
+            on_release:
+                app.root.current = "quiz"
+                root.manager.transition.direction = "left"
+
+        RoundedButton:
+            text: "SUMMARY"
+            font_size: 20
+            background_color: rgba(15/255, 39/255, 77/255, 1)
+        RoundedButton:
+            size_hint:
+            text: "<- Back"
+            font_size: 20
+            #background_color: rgba(15/255, 39/255, 77/255, 1)
+            on_release:
+                app.root.current = "Main"
+                root.manager.transition.direction = "right"
+            #AsyncImage:
+             #   source: "https://w7.pngwing.com/pngs/1022/856/png-transparent-button-back-s-blue-text-window-thumbnail.png"
+             #   center_x: self.parent.center_x
+              #  center_y: self.parent.center_y
+
+#######################################################################################################################################
+<QuizWindow>:
+    name: "quiz"
+    BoxLayout:
+        padding: 50, 50
+        orientation: "vertical"
+
+        canvas:
+            Color:
+                rgba:  (133/255, 31/255, 140/255, 1)
+            Rectangle:
+                size: self.size
+
+        Label:
+            markup: True
+            text: "[b]QUIZ: IPDS[/b]"
+            font_size: 25
+            color: 1,1,1,1
+
+        RelativeLayout:
+            canvas:
+                Color:
+                    #background_normal: ''
+                    rgba: (0,0,0,1)
+                Line:
+                    points: (0,20, self.width, 20)
+                    width: 1
+        BoxLayout:
+            Label:
+                id: question_display
+                text: "Which of the following is A - B for \n A = {2,3,4} and B = {2,3, 5}"
+                font_size: 20
+                color: 1,1,1,1
+
+        RelativeLayout:
+            canvas:
+                Color:
+                    #background_normal: ''
+                    rgba: (0,0,0,1)
+                Line:
+                    points: (0,0, self.width, 0)
+                    width: 1
+
+        Label:
+            markup: True
+            #color: '#f59042'
+            text: "[b]Option 1[/b]"
 
         Button:
-            text: "Data Sheet"
-            font_size: 25
-            #size_hint: .6, .2
-            #pos_hint: {"center_x": .5, "top": .4}
+            id: op1
+            text: "{3,4}"
+            #color: 1,1,1,1
             background_normal: ''
-            background_color: (133/255, 31/255, 140/255, .5)
+            background_color: (1,1,1, .2)
+            on_release:
+                root.option_test(self, self.text)
 
-        GridLayout:
-            #orientation: "horizontal"
-            cols: 2
-            spacing:  10
-            Button:
-                text: "IPDS"
-                background_normal: ''
-                background_color: (133/255, 31/255, 140/255, .5)
-            Button:
-                text: "SILICON TO C"
-                background_normal: ''
-                background_color: (133/255, 31/255, 140/255, .5)
-            Button:
-                text: "DATA MODELLING"
-                background_normal: ''
-                background_color: (133/255, 31/255, 140/255, .5)
-            Button:
-                text: "PYTHON"
-                background_normal: ''
-                background_color: (133/255, 31/255, 140/255, .5)
+        Label:
+            markup: True
+            #color: '#f59042'
+            text: "[b]Option 2[/b]"
+        Button:
+            id: op2
+            text: "{8,7}"
+            background_normal: ''
+            background_color: (1,1,1, .2)
+            on_release:
+                root.option_test(self, self.text)
+
+        Label:
+            markup: True
+            #color: '#f59042'
+            text: "[b]Option 3[/b]"
+
+        Button:
+            id: op3
+            text: "{0}"
+            background_normal: ''
+            background_color: (1,1,1, .2)
+
+        Label:
+            markup: True
+            text: "[b]Option 4[/b]"
+
+        Button:
+            id: op4
+            text: "{1}"
+            background_normal: ''
+            background_color: (1,1,1, .2)
+
+        RelativeLayout:
+            padding: 40
+            GridLayout:
+                cols: 2
+                size_hint: .4, .7
+                spacing: 50
+                #pos_hint: {'top': .1}
+
+                Button:
+                    background_normal: ''
+                    text: "End Quiz"
+                    size_hint: None, .7
+                    width: "70dp"
+                    background_color: (1,0,0,1)
+                    pos_hint: {'center_x': .5, 'top': .3}
+                    on_release:
+                        app.root.current = "SelectWindow"
+                        root.manager.transition.direction = "right"
+
+                Button:
+                    #background_normal: ''
+                    text: "Next Question"
+                    size_hint: None, .7
+                    width: "110dp"
+                    background_color: (0, 1, 0, 1)
+                    pos_hint: {'center_x': .7, 'top': .3}
+                    on_release:
+                        root.next_question()
+######################################################################################################
+<RoundedButton@Button>
+    canvas.before:
+        Color:
+            rgba: (133/255, 31/255, 140/255, 1)
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            radius: [18]
